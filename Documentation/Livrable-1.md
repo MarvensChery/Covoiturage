@@ -21,6 +21,8 @@ Faire un fork du projet **Covoiturage**. Spécifications du fork:
 * Projet privé;
 * Le professeur est membre, il a le rôle **Maintainer**;
 
+À partir de la branche Dev, créez une branche ayant comme nom votre numéro de dossier.
+
 Initialisez le wiki de votre projet à partir du wiki du projet **Covoiturage**. Les pages de ce wiki sont dans le dossier **\\Documentation** du projet.
 
 Concevez le modèle logique de donnnées. À la page **Modèle logique de données**, insérez une image de votre modèle et fournir des explications au besoin.

@@ -1,4 +1,4 @@
-Le deuxième livrable consiste à produire de la documentation et du code pour la couche d'accès aux données.
+Le deuxième livrable consiste à valider le modèle de données.
 
 **Documentation à produire:**
 
@@ -12,10 +12,13 @@ Le deuxième livrable consiste à produire de la documentation et du code pour l
 
 ### Date de remise
 
-**Groupe 1:** 
+**Groupe 1:**
 
-**Groupe 2:** 
+**Groupe 2:**
 
 # Étapes
 
-## Étape 1
+## Étape 1: Données de tests
+L'étape consiste à créer un jeu de données initiales retrésentant l'historique suivant:
+
+L'utilisateur 1 s'inscrit: Aida

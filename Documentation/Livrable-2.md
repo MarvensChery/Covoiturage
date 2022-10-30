@@ -21,4 +21,8 @@ Le deuxième livrable consiste à valider le modèle de données.
 ## Étape 1: Données de tests
 L'étape consiste à créer un jeu de données initiales retrésentant l'historique suivant:
 
-L'utilisateur 1 s'inscrit: Aida
+L'utilisateur 1 s'inscrit: Aida Loutfi, 15 chemin Paquette, aida@gmail.com, 819-326-4856, bonjour!
+L'utilisateur 2 s'inscrit: Bob Smith, 42 chemin du Lac Quenouille, bob@gmail.com, 514-352-68374, bonjour!
+L'utilisateur 3 s'inscrit: Yasmine Touré, chemin Drapeau, yasmine@gmail.com, 450-384-3245, bonjour!
+Aida offre un déplacement à Ste-Agathe: Val-des-Lacs, 8-11-2022, 12:30, Arrêt à la Coop, comptant et Interac, 3 places
+

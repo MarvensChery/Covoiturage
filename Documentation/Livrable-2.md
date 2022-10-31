@@ -49,7 +49,7 @@ Aida demande la liste des déplacements offerts
 Aida filtre la liste par destination  
 Aida filtre la liste par date de départ   
 Aida demande d'afficher ses déplacements 
-Aida clique sur son offre de Val-des-Lacs vers Ste-Agathe pour voir toute l'info et les réservations 
+Aida clique sur son offre de Val-des-Lacs vers Ste-Agathe pour voir toute l'info et les réservations  
 Bob se connecte  
 Bob demande la liste des déplacements demandés    
 Bob demande de voir son profil 

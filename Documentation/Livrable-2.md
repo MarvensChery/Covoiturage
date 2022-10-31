@@ -27,12 +27,12 @@ L'utilisatrice 1 s'inscrit: Aida Loutfi, 15 chemin Paquette, aida@gmail.com, 819
 L'utilisateur 2 s'inscrit: Bob Smith, 42 chemin du Lac Quenouille, bob@gmail.com, 514-352-68374, bonjour!  
 L'utilisatrice 3 s'inscrit: Yasmine Touré, chemin Drapeau, yasmine@gmail.com, 450-384-3245, bonjour!  
 L'utilisateur 4 s'inscrit: Pierre Leblanc, 21 chemin Léveillée, pierre@gmail.com, 819-326-1367, bonjour!  
-Aida offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 8-11-2022, 12:30, Arrêt à la Coop, comptant et Interac, 3 places  
-Aida offre un déplacement à Val-des-Lacs: départ de Ste-Agathe, 8-11-2022, 14:30, comptant et Interac, 3 places  
-Yasmine offre un déplacement à St-Donat: départ de Val-des-Lacs, 8-11-2022, 12:30, Arrêt à la Coop, comptant, 2 places  
-Yasmine offre un déplacement à Val-des-Lacs: départ de St-Donat, 8-11-2022, 15:30, comptant, 2 places  
-Yasmine offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 9-11-2022, 10:00, Arrêt à la Coop, comptant, 2 places  
-Yasmine offre un déplacement à Val-des-Lacs: départ de Ste-Agathe, 9-11-2022, 12:00, comptant, 2 places  
-Bob offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 9-11-2022, 9:00, Arrêt à l'hôtel de ville, Interac, 3 places  
+Déplacement 1: Aida offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 8-11-2022, 12:30, Arrêt à la Coop, comptant et Interac, 3 places  
+Déplacement 2: Aida offre un déplacement à Val-des-Lacs: départ de Ste-Agathe, 8-11-2022, 14:30, comptant et Interac, 3 places  
+Déplacement 3: Yasmine offre un déplacement à St-Donat: départ de Val-des-Lacs, 8-11-2022, 12:30, Arrêt à la Coop, comptant, 2 places  
+Déplacement 4: Yasmine offre un déplacement à Val-des-Lacs: départ de St-Donat, 8-11-2022, 15:30, comptant, 2 places  
+Déplacement 5: Yasmine offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 9-11-2022, 10:00, Arrêt à la Coop, comptant, 2 places  
+Déplacement 6: Yasmine offre un déplacement à Val-des-Lacs: départ de Ste-Agathe, 9-11-2022, 12:00, comptant, 2 places  
+Déplacement 7: Bob offre un déplacement à Ste-Agathe: départ de Val-des-Lacs, 9-11-2022, 9:00, Arrêt à l'hôtel de ville, Interac, 3 places  
 Bob offre un déplacement à Val-des-Lacs: départ de Ste-Agathe, 9-11-2022, 12:00, Interac, 3 places  
-Pierre fait une réservation
+Pierre fait une réservation: il réserve

@@ -61,6 +61,9 @@ async function elementsCompetencesDunProgramme(idProgramme) {
   return resultat;
 }
 
-exports.offres = offres;
-exports.demandes = demandes;
-exports.elementsCompetencesDunProgramme = elementsCompetencesDunProgramme;
+
+module.exports = {
+  offres,
+  demandes,
+  elementsCompetencesDunProgramme,
+}

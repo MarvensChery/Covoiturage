@@ -12,7 +12,7 @@ const knex = require('knex')({
   pool: { min: 0, max: 7 },
 });
 
-async function offres() {
+async function obtenirOffres() {
   const resultat = await knex('offres')
     .select('*')
     .orderBy('date');
@@ -20,7 +20,7 @@ async function offres() {
   return resultat;
 }
 
-async function demandes() {
+async function obtenirDemandes() {
   const resultat = await knex('utilisateurs')
     .join('demandes', 'utilisateurs.idUtilisateur', 'demandes.idUtilisateur')
     .select('utilisateurs.idUtilisateur', 'nomFamille', 'prenom', 'depart', 'destination')
@@ -49,21 +49,17 @@ async function demandes() {
   return retour;
 }
 
-async function elementsCompetencesDunProgramme(idProgramme) {
-  const resultat = await knex('competences')
-    .join('elementCompetences', 'competences.id', 'elementCompetences.idCompetence')
-    .select('idProgramme', 'code', 'enonce', 'no', 'element')
-    .where({
-      idProgramme,
-    })
-    .orderBy('code');
-
+function ajouterDemande(demande) {
+  let resultat = 1;
+  knex('demandes').insert(demande)
+    .then((id) => {
+      console.log(id);
+    });
   return resultat;
 }
 
-
 module.exports = {
-  offres,
-  demandes,
-  elementsCompetencesDunProgramme,
-}
+  obtenirOffres,
+  obtenirDemandes,
+  ajouterDemande,
+};

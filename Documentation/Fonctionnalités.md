@@ -24,6 +24,7 @@ Les utilisateurs doivent s'inscrire pour utiliser le service. À l'inscription, 
 * Numéro de téléphone;
 * Mot de passe (entré 2 fois pour confirmation)
 
+L’utilisateur doit cocher une case pour confirmer qu’il a 18 ans ou plus. Cette information n'est pas conservée.   
 La ville de l'utilisateur n'a pas besoin d'être saisie car tous les utilisateurs proviennent de la même ville.
 
 ## Profil

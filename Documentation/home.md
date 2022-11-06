@@ -2,11 +2,13 @@
 
 ## [Contexte](Contexte)
 
-## [Fonctionnalités](Fonctionnalit%C3%A9s)
+## [Fonctionnalités](Fonctionnalités)
 
 ## [Livrable 1](Livrable%201)
 
-* [Modèle logique de données](Mod%C3%A8le%20logique)
+* [Modèle logique de données](Modèle logique)
 * [CRUD](CRUD)
 
-## [Livrable 2](/cours-3d1/covoiturage/-/wikis/Livrable%202)
+## [Livrable 2](Livrable 2)
+
+## [Livrable 3](Livrable 3)

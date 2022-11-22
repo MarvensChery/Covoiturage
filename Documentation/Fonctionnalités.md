@@ -24,6 +24,7 @@ Les utilisateurs doivent s'inscrire pour utiliser le service. À l'inscription, 
 * Numéro de téléphone;
 * Mot de passe (entré 2 fois pour confirmation)
 
+L’utilisateur doit cocher une case pour confirmer qu’il a 18 ans ou plus. Cette information n'est pas conservée.   
 La ville de l'utilisateur n'a pas besoin d'être saisie car tous les utilisateurs proviennent de la même ville.
 
 ## Profil
@@ -79,7 +80,7 @@ Un bouton permet de demander des précisions. L'utilisateur peut entrer un messa
 
 ## Liste des déplacements demandés
 
-Les déplacements demandés sont affichés en ordre chronologique. Pour chaque demande on affiche:
+Les déplacements demandés (à venir) sont affichés en ordre chronologique. Pour chaque demande on affiche:
 
 * La destination;
 * Le départ;
@@ -90,7 +91,7 @@ La liste des demandes peut être filtrée par destination ou date de départ.
 
 ## Mes déplacements
 
-Un utilisateur peut afficher la liste des déplacements qu'il offre et qu'il demande, ainsi que ses réservations (3 listes). Seules les offres, demandes et résevations à venir sont affichées.
+Un utilisateur peut afficher la liste des déplacements qu'il offre et qu'il demande, ainsi que ses réservations (3 listes). Seules les offres, demandes et résevations à venir sont affichées. L'information est affichée par ordre chronologique.
 
 **Déplacements offerts:**
 
@@ -110,6 +111,6 @@ La demande peut être modfiée ou supprimée.
 
 **Réservations:**
 
-L'information affichée pour chaque réservation est la même que celle de  la liste des déplacements offerts.
+L'information affichée pour chaque réservation est la même que celle de la liste des déplacements offerts.
 
-La réservation peut être annulée (supprimée) en tout temps jusqu’à 1 heure avant l’heure de départ.  Un courriel d’annulation est automatiquement envoyé conducteur.
+La réservation peut être annulée (supprimée) en tout temps jusqu’à 1 heure avant l’heure de départ. Un courriel d’annulation est automatiquement envoyé conducteur.

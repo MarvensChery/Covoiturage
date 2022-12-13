@@ -1,9 +1,29 @@
-//
-// Accès à la bd via Knex
-//
 const express = require('express');
+const canevas = require('./views/canevas');
+const offres = require('./views/offres');
 
 const app = express();
+
+app.get('/', async (req, res) => {
+  let vue = canevas.genererEntete();
+  vue += await canevas.genererAccueil();
+  vue += canevas.genererPiedDePage();
+  return res.send(vue);
+});
+
+app.get('/obtenirOffres', async (req, res) => {
+  let vue = canevas.genererEntete();
+  vue += await offres.genererOffres();
+  vue += canevas.genererPiedDePage();
+  res.send(vue);
+});
+
+app.get('/obtenirOffre/:idOffre', async (req, res) => {
+  let vue = canevas.genererEntete();
+  vue += await offres.genererOffre(req.params.idOffre);
+  vue += canevas.genererPiedDePage();
+  res.send(vue);
+});
 
 app.listen(5000, () => {
   console.log('Serveur en exécution');

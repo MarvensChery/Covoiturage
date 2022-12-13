@@ -33,7 +33,7 @@ function genererEntete() {
   return html;
 }
 
-async function genererAccueil() {
+function genererAccueil() {
   const html = `
       <section class="hero">
         <div class="hero-body">

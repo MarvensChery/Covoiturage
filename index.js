@@ -3,6 +3,8 @@ const canevas = require('./views/canevas');
 const offres = require('./views/offres');
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
   let vue = canevas.genererEntete();

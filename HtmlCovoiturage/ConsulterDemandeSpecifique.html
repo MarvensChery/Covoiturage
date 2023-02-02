@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <style>
+      div.columns {
+	margin-top: 50px;
+	}
+
+
+
+	table {
+  
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+ 
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+      
+      
+      
+      
+      .input{
+        margin-left: 800px;
+        width: 245px;
+      }
+
+      .label {
+          float: left;
+          margin-right: 0.5em;
+          color: darkseagreen;
+        }
+     
+        #map {
+        height: 80%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      
+
+  </style>
+    <title>Vos Deplacement Demandée</title>
+</head>
+
+
+
+
+  <body class="hero-body has-background-primary">
+
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+
+          <a class="navbar-link is-size-1">
+       Menu
+      </a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="history.back()">Liste de vos deplacement Demandée</button></a>
+        </a>
+      </div>
+    </div>
+    </nav>
+
+    <h1 class="has-text-centered    has-text-black is-size-1 ">Info Deplacement Demandée</h1>
+    <section class="container ">
+
+
+      <div class="box">
+      <form onsubmit="ModifierDeplacement(event)" id="form">
+    <div class="block">
+
+      <label class="label title is-2 ">Destination: </label> <p class="title is-1" id="destination">St-Donat</p>
+      </div>
+      <input class="input is-size-4 "  type="text" placeholder="Nouvelle Destination" id="nouveaudestination" name="destination">
+     <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Destination</button>
+
+
+
+
+    <div class="block">
+    <hr style="background-color: black;">
+
+   <label class="label title is-2 floated">Depart: </label><p class="title is-1 floated" id="depart">Ste-Agathe</p>
+   <input class="input is-size-4" type="text" placeholder=" Nouveaux Depart" id="nouveaudepart" name="depart">
+   <button type="submit" style ="margin-left: 800px;" class="button is-link is-medium is-rounded " >Modifier Depart</button>
+
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Date: </label><p class="title is-1" id="date">allo@gmail.com</p>
+    <input class="input is-size-4" type="date" placeholder=" Nouveaux Date" id="nouveaudate" name="date">
+   <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Date</button>
+  </div>
+   <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Heure: </label><p class="title is-1" id="heure">514 888-999</p>
+    <input class="input is-size-4" type="time" placeholder=" Nouveaux Heure" " id="nouveauHeure" name="heure">
+    <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Telephone</button>
+
+
+
+  </div>
+  <hr style="background-color: black;">
+  <input type="hidden" id="noDeplacementDemande" name="noDemande">
+  </form>
+  <label class="label title is-2 ">no Utilisateur: </label> <p class="title is-1" id="Utilisateur">5</p>
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">numero DeplacementDemandee: </label> <p class="title is-1" id="deplacements">10 </p>
+  </div>
+
+</section>
+
+
+
+
+
+
+<section class="hero is-primary is-large">
+  <div class="hero-body">
+  </div>
+</section>
+<script>
+  const a = window.location.href
+  const b = a.split("/")
+  AfficherInfoDemandee(b[5])
+
+  function AfficherInfoDemandee(data){
+      fetch("http://localhost:5000/covoiturage/demandeDemandeeUtilisateurSpecifique/"+data)
+  .then( reponse =>{
+      return reponse.json()
+  })
+  .then(liste =>{
+      let noDeplacement = document.getElementById("deplacements")
+      let destination = document.getElementById("destination");
+      let  depart = document.getElementById("depart");
+      let date = document.getElementById("date")
+      let heure = document.getElementById("heure")
+      let noUtilisateur = document.getElementById("Utilisateur")
+      let hiddenNoDemandee = document.getElementById("noDeplacementDemande")
+
+      noDeplacement.innerText = liste[0].noDemande
+      destination.innerText = liste[0].destination
+      depart.innerText = liste[0].depart
+      date.innerText = liste[0].date
+      heure.innerText = liste[0].heure
+      noUtilisateur.innerText = liste[0].noUtilisateur
+      hiddenNoDemandee.value = liste[0].noDemande
+  })
+
+}
+  function ModifierDeplacement(event){
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    if(document.getElementById("nouveaudestination").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierDemandeeDestination`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Deplacement demandee modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("nouveaudepart").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierDemandeeDepart`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Deplacement demandee modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("nouveaudate").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierDemandeeDate`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Deplacement demandee modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("nouveauHeure").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierDemandeeHeure`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Deplacement demandee modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+}
+
+</script>
+</body>
+</html>

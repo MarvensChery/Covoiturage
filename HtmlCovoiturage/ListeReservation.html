@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  
+  <title>Offres</title>
+<link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css'>
+<!-- custom css -->
+<style>
+	div.columns {
+	margin-top: 50px;
+	}
+
+
+
+	table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+.input{
+        width: 400px;
+      }
+.button{
+        margin-right: 200px;
+
+      }
+
+</style>
+</head>
+
+<body class="has-background-primary">
+	<nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+
+			<div class="navbar-item has-dropdown is-hoverable">
+
+				<a class="navbar-link is-size-1">
+		 Menu
+		</a>
+		<div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+		<div class="navbar-dropdown">
+			<a class="navbar-item">
+				<button class="button is-medium button is-link is-outlined" onclick="history.back()">Vos infos</button>
+			</a>
+
+		</div>
+	</div>
+	</nav>
+
+		<div class="hero-body has-background-primary">
+	<div class='container has-text-centered'>
+	<div class='columns is-mobile is-centered'>
+	<div class='column is-15 is-centered  '>
+		<div>
+		<h1 class='has-text-black is-size-1 is-family-monospace'>Liste de vos Reservations</h1>
+
+		</div>
+		<div class="box">
+		<table   class="table is-bordered has-background-info">
+		<thead>
+			<tr>
+			<th>noOffre</th>
+			<th>noReservation</th>
+			<th >noUtilisateur</th>
+			<th>Destination</th>
+			<th>Depart</th>
+			<th>Date</th>
+		  <th>Heure</th>
+      <th>Trajet</th>
+      <th>nbPlaceOfferte</th>
+      <th>Cout</th>
+      <th>paiementVirementInteract</th>
+      <th>paiementComptant</th>
+    </tr>
+
+	</thead>
+
+			<tbody id="corpsDuTableau">
+
+			</tbody>
+
+		</table>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+<hr style="background-color: black;">
+<label class="label title is-2">Enter un no offre a consulter </label>
+<input class="input is-size-4" type="text" placeholder="numero Offre" id="noOffre">
+ <button class="button is-link is-medium is-rounded  " onclick="AfficherPageConsulterOffre()" >Consulter</button>
+
+ <label class="label title is-2">Enter un no Reservation a annuler </label>
+ <input class="input is-size-4" type="text" placeholder="numero Reservation" id="noReservationSuprimmer">
+	<button class="button is-link is-medium is-rounded  " onclick="supprimerReservation(event)" >Annuler</button>
+
+<section class="hero is-success is-fullheight">
+<div class="hero-body has-background-primary "></div>
+</section>
+</body>
+
+<script>
+	 const a = window.location.href
+  const b = a.split("/")
+  const noUtilisateur = b[5]
+window.onload = AfficherTableauReservations(noUtilisateur);
+
+function AfficherPageConsulterOffre(){
+	let noOffre = document.getElementById('noOffre').value
+	window.location.href = (`http://localhost:5000/covoiturage/ConsulterOffre/${noOffre}`)
+}
+
+function supprimerReservation(event) {
+    event.preventDefault();
+		const a = window.location.href
+  	const b = a.split("/")
+  	const noUtilisateur = b[5]
+    let noReservation = document.getElementById("noReservationSuprimmer").value;
+
+    fetch("http://localhost:5000/covoiturage/SupprimerReservation/" + noReservation+"/"+ noUtilisateur, { method: "DELETE"})
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then( reponseJson =>{
+        if (reponseJson.supprime) {
+            alert("La Reservation a bien été supprimé ");
+            location.reload()
+        }
+        else {
+            alert("Oupps, il y a eu une erreur: " + reponseJson.message);
+        }
+    })
+	}
+
+function AfficherTableauReservations(noUtilisateur) {
+    fetch(`http://localhost:5000/covoiturage/ReservationUtilisateur/${noUtilisateur}`)
+    .then(reponse =>{
+        return reponse.json()
+    })
+    .then(listes =>{
+        let tbody = document.getElementById("corpsDuTableau");
+
+        listes.forEach(liste => {
+            let tr = document.createElement("tr");
+
+            let tdnoOffres = document.createElement("td");
+            tdnoOffres.innerText = liste.noOffres;
+            tr.appendChild(tdnoOffres);
+
+						let tdnoReservation = document.createElement("td");
+            tdnoReservation.innerText = liste.noReservation;
+            tr.appendChild(tdnoReservation);
+
+            let tdnoUtilisateur = document.createElement("td");
+            tdnoUtilisateur.innerText = liste.noUtilisateur;
+            tr.appendChild(tdnoUtilisateur);
+
+						let tdDestination = document.createElement("td");
+            tdDestination.innerText = liste.destination;
+            tr.appendChild(tdDestination);
+
+						let tdDepart = document.createElement("td");
+            tdDepart.innerText = liste.depart;
+            tr.appendChild(tdDepart);
+
+						let tdDate = document.createElement("td");
+            tdDate .innerText = liste.date;
+            tr.appendChild(tdDate );
+
+            let tdHeure = document.createElement("td");
+            tdHeure.innerText = liste.heure;
+            tr.appendChild(tdHeure);
+
+						let tdTrajet = document.createElement("td");
+            tdTrajet.innerText = liste.trajet;
+            tr.appendChild(tdTrajet);
+
+            let tdNbPlace = document.createElement("td");
+            tdNbPlace.innerText = liste.nbPlaceOfferte;
+            tr.appendChild(tdNbPlace);
+
+						let tdCout= document.createElement("td");
+            tdCout.innerText = liste.cout;
+            tr.appendChild(tdCout);
+
+            let tdInteract= document.createElement("td");
+            tdInteract.innerText = liste.paiementVirementInteract;
+            tr.appendChild(tdInteract);
+
+            let tdComptant= document.createElement("td");
+            tdComptant.innerText = liste.paiementComptant;
+            tr.appendChild(tdComptant);
+
+            tbody.appendChild(tr);
+        });
+    })
+
+	function AfficherPageConsulterOffre(){
+	let noOffre = document.getElementById('noOffre').value
+	window.location.href = (`http://localhost:5000/covoiturage/ConsulterOffre/${noOffre}`)
+}
+
+}
+</script>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <style>
+      
+
+      .label {
+          float: left;
+          margin-right: 0.5em;
+          color: darkseagreen;
+        }
+
+
+
+  </style>
+    <title>Profil</title>
+</head>
+
+
+
+
+  <body class="hero-body has-background-primary">
+
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+
+          <a class="navbar-link is-size-1">
+       Menu
+      </a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageOffres()">Liste des Offres</button></a>
+        </a>
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageDeplacementDemandeeGeneral()">Liste des Deplacement Demandée</button></a>
+        </a>
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageVosOffres()">Vos Offres</button></a>
+        </a>
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageDeplacementDemandee()">Vos deplacements Demandée</button></a>
+        </a>
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageReservations()">Vos reservations</button></a>
+        </a>
+
+      </div>
+    </div>
+    </nav>
+
+    <h1 class="has-text-centered    has-text-black is-size-1 ">Profil</h1>
+    <section class="container ">
+
+
+      <div class="box">
+      <form onsubmit="Modifier(event)" id="form">
+    <div class="block">
+
+      <label class="label title is-2 ">Prenom: </label> <p class="title is-1" id="prenom">Allo</p>
+      </div>
+      <input class="input is-size-4 "  type="text" placeholder=" Nouveaux Prenom" id="NouveauPrenom" name="prenom">
+     <button type="submit" class="button is-link is-medium is-rounded " >Modifier Prenom</button>
+
+
+
+
+    <div class="block">
+    <hr style="background-color: black;">
+
+   <label class="label title is-2 floated">Nom: </label><p class="title is-1 floated" id="nom">Marvens</p>
+   <input class="input is-size-4" type="text" placeholder=" Nouveaux Nom" id="NouveauNom" name="nom">
+   <button type="submit"  class="button is-link is-medium is-rounded " >Modifier Nom</button>
+
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Email: </label><p class="title is-1" id="adresseCourriel">allo@gmail.com</p>
+    <input class="input is-size-4" type="email" placeholder=" Nouveaux Email" id="NouveauAdresseCourriel" name="adresseCourriel">
+   <button type="submit" class="button is-link is-medium is-rounded " >Modifier Email</button>
+  </div>
+   <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Telephone: </label><p class="title is-1" id="noTelephone">514 888-999</p>
+    <input class="input is-size-4" type="phone" placeholder=" Nouveaux Telephone"  id="NouveauNoTelephone" name="noTelephone">
+    <button type="submit" class="button is-link is-medium is-rounded " >Modifier Telephone</button>
+
+
+
+  </div>
+
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Adresse: </label> <p class="title is-1" id="adresse">1234 rue sherbrooke</p>
+ <input class="input is-size-4" type="address" placeholder=" Nouvelle Adresse" id="NouveauAdresse" name="adresse">
+
+ <button type="submit" class="button is-link is-medium is-rounded  " >Modifier Adresse</button>
+  </div>
+  <br><br>
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">No Utilisateur: </label> <input class="title is-4" id="noUtilisateur" name="noUtilisateur" value="50" readonly/>
+  <button class="button is-link is-medium is-rounded has-text-centered " onclick="AfficherChangerMotDePasse()">Modifier Mot de passe</button>
+</form>
+</div>
+
+</section>
+<section class="hero is-primary is-large">
+  <div class="hero-body">
+  </div>
+</section>
+
+
+
+<script>
+  const a = window.location.href
+  const b = a.split("/")
+  document.getElementById("noUtilisateur").value = b[5]
+
+  function AfficherPageOffres(){
+      const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/PageOffres/${noUtilisateur}`)
+  }
+
+  function AfficherPageVosOffres(){
+      const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/ListeVosOffres/${noUtilisateur}`)
+  }
+
+
+  function AfficherPageDeplacementDemandeeGeneral(){
+      let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/ListeDeplacementDemandee/${noUtilisateur}`)
+  }
+
+  function AfficherPageDeplacementDemandee(){
+      const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/ListeDeplacementDemandeeUtilisateur/${noUtilisateur}`)
+  }
+
+  function AfficherPageReservations(){
+      const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/ListeReservation/${noUtilisateur}`)
+  }
+
+  AfficherInfoUtlisateur(b[5])
+    function AfficherInfoUtlisateur(data){
+        fetch("http://localhost:5000/covoiturage/infoUtilisateur/"+data)
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then(liste =>{
+        let noUtilisateur = document.getElementById("noUtilisateur");
+        let  nom = document.getElementById("nom");
+        let prenom = document.getElementById("prenom")
+        let adresse = document.getElementById("adresse")
+        let telephone = document.getElementById("noTelephone")
+        let adresseCourriel = document.getElementById("adresseCourriel")
+
+        noUtilisateur.innerText = liste[0].noUtilisateur
+        prenom.innerText = liste[0].prenom
+        nom.innerText = liste[0].nom
+        adresseCourriel.innerText = liste[0].adresseCourriel
+        telephone.innerText = liste[0].noTelephone
+        adresse.innerText = liste[0].adresse
+    })
+  }
+
+  function AfficherChangerMotDePasse(){
+    let noUtilisateur = document.getElementById("noUtilisateur").value
+      window.location.href = (`http://localhost:5000/covoiturage/ModifierMotDePasse/${noUtilisateur}`)
+  }
+
+  function Modifier(event){
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    if(document.getElementById("NouveauNom").value != ""){
+      fetch("http://localhost:5000/covoiturage/modifierNomUtilisateur", {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Utilisateur modifié");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauPrenom").value != ""){
+      fetch("http://localhost:5000/covoiturage/modifierPrenomUtilisateur", {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Utilisateur modifié");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauAdresseCourriel").value != ""){
+      fetch("http://localhost:5000/covoiturage/modifierAdresseCourrielUtilisateur", {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Utilisateur modifié");
+              window.location.href = "http://localhost:5000/"
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauNoTelephone").value != ""){
+      fetch("http://localhost:5000/covoiturage/modifierNoTelephoneUtilisateur", {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Utilisateur modifié");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauAdresse").value != ""){
+      fetch("http://localhost:5000/covoiturage/modifierAdresseUtilisateur", {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Utilisateur modifié");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+
+
+  }
+</script>
+</body>
+</html>

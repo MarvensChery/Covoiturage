@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+</head>
+
+<body class="has-background-light">
+    <form onsubmit="ajouterUtilisateur(event)">
+    <section class="hero is-success is-fullheight">
+        <div class="hero-body has-background-primary">
+            <div class="container has-text-centered">
+              <div class="column is-three-fifths is-offset-one-fifth">
+              <div class="box ">
+              <div class="column is-4 is-offset-4">
+                    <h3 class="has-text-black title is-8">Inscription</h3>
+                    <hr class="login-hr">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="Nom" autofocus="" id="nom" name="nom" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="prenom" autofocus="" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="Adresse" autofocus="" id="adresse" name="adresse" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="phone" placeholder="(xxx)-xxx-xxxx" autofocus="" id="phone" name="noTelephone" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="email" placeholder="Email" autofocus="" id="email" name="adresseCourriel" required>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="password" placeholder="Mot de Passe" id="mdp" name="mdp" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="password" placeholder="Confimation" id="Conmdp" name="Conmdp" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input type="checkbox" checked="checked" id="18ouplus">
+                                    <label class="container">Avez-vous 18 ans ou plus?
+                                      </label>
+                                </div>
+                            </div>
+                            <div class="field">
+
+                          
+                </label>
+                            </div>
+                            <button type="submit" class="button is-block is-info is-large is-fullwidth title is-4">Inscription <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <p class="has-text-grey">
+                        <a href="http://localhost:5000/covoiturage/connexion">Connexion</a> &nbsp;·&nbsp;
+                        <a href="http://localhost:5000">Accueil</a>
+                      </p>
+                </div>
+            </div>
+        </div>
+        </div>
+      </section>
+<script>
+        function ajouterUtilisateur(event) {
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+
+    fetch("http://localhost:5000/InscriptionUtilisateur", {method: "POST", body: donneeFormulaire})
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then( reponseJson =>{
+        if (reponseJson.success) {
+            alert("Inscription Succés");
+            window.location.href = "http://localhost:5000"
+        }
+        else {
+            alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+        }
+    })
+}
+      </script>
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+
+</form>
+</body>
+
+</html>

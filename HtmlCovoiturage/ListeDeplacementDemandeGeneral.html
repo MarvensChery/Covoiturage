@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Liste Deplamcent Demandé</title>
+<link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css'>
+<!-- custom css -->
+<style>
+	div.columns {
+	margin-top: 50px;
+	}
+
+
+
+	table {
+  
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+ 
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+</style>
+</head>
+
+<body class="has-background-primary">
+	<nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+
+			<div class="navbar-item has-dropdown is-hoverable">
+
+				<a class="navbar-link is-size-1">
+		 Menu
+		</a>
+		<div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+		<div class="navbar-dropdown">
+			<a class="navbar-item">
+				<button class="button is-medium button is-link is-outlined" onclick="history.back()">Vos infos</button>
+			</a>
+      <a class="navbar-item">
+				<button class="button is-medium button is-link is-outlined" onclick="AfficherPageOffrirDeplacement()">Faire un offre</button>
+			</a>
+
+		</div>
+	</div>
+	</nav>
+
+		<div class="hero-body has-background-primary">
+	<div class='container has-text-centered'>
+	<div class='columns is-mobile is-centered'>
+	<div class='column is-15 is-centered  '>
+		<div>
+		<h1 class='has-text-black is-size-1 is-family-monospace'>Liste des deplacements demandée</h1>
+
+		</div>
+		<div class="box" >
+		<table style="width:70%; "   class="table is-bordered has-background-info">
+		<thead>
+			<tr>
+			<th>noDemande</th>
+			<th >destination</th>
+			<th>depart</th>
+			<th>date</th>
+			<th>heure</th>
+		  <th>noUtilisateur</th>
+    </tr>
+
+	</thead>
+
+			<tbody id="corpsDuTableau">
+
+			</tbody>
+
+		</table>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+<section class="hero is-success is-fullheight">
+<div class="hero-body has-background-primary "></div>
+</section>
+</body>
+<script>
+    window.onload = AfficherListeDeplaceDemandee;
+
+    function AfficherPageOffrirDeplacement(){
+	      const a = window.location.href
+        const b = a.split("/")
+        let noUtilisateur = b[5]
+	      window.location.href = (`http://localhost:5000/covoiturage/FaireUneOffre/${noUtilisateur}`)
+    }
+
+    function AfficherListeDeplaceDemandee(){
+      const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = b[5]
+    fetch(`http://localhost:5000/covoiturage/demandeDemandee`)
+    .then(reponse =>{
+        return reponse.json()
+    })
+    .then(listes =>{
+        let tbody = document.getElementById("corpsDuTableau");
+
+        listes.forEach(liste => {
+            let tr = document.createElement("tr");
+
+            let tdNoDeplacement = document.createElement("td");
+            tdNoDeplacement.innerText = liste.noDemande;
+            tr.appendChild(tdNoDeplacement);
+
+            let tdDestination = document.createElement("td");
+            tdDestination.innerText = liste.destination;
+            tr.appendChild(tdDestination);
+
+            let tdDepart = document.createElement("td");
+            tdDepart.innerText = liste.depart;
+            tr.appendChild(tdDepart);
+
+            let tdDate = document.createElement("td");
+            tdDate.innerText = liste.date;
+            tr.appendChild(tdDate);
+
+            let tdHeure = document.createElement("td");
+            tdHeure.innerText = liste.heure;
+            tr.appendChild(tdHeure);
+
+            let tdnoUtilisateur = document.createElement("td");
+            tdnoUtilisateur.innerText = liste.noUtilisateur;
+            tr.appendChild(tdnoUtilisateur);
+
+            tbody.appendChild(tr);
+        });
+    })
+}
+</script>
+</html>

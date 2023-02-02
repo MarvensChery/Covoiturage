@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offres</title>
+<link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css'>
+<!-- custom css -->
+<style>
+	div.columns {
+	margin-top: 50px;
+	}
+
+
+
+	table {
+  
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+ 
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+</style>
+</head>
+
+<body class="has-background-primary">
+  <div class="hero-body has-background-primary">
+    <div class='container has-text-centered'>
+    <div class='columns is-mobile is-centered'>
+    <div class='column is-15 is-centered  '>
+      <div>
+      <h1 class='has-text-black is-size-1 is-family-monospace'>Liste des Offres</h1>
+
+      </div>
+      <div class="box">
+      <table     class="table is-bordered has-background-info">
+      <thead>
+        <tr>
+          <th>noOffre</th>
+          <th >noUtilisateur</th>
+          <th>Destination</th>
+          <th>Depart</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Trajet</th>
+          <th>nbPlaceOfferte</th>
+          <th>Cout</th>
+          <th>paiementVirementInteract</th>
+          <th>paiementComptant</th>
+
+      </tr>
+
+    </thead>
+
+        <tbody id="corpsDuTableau">
+
+        </tbody>
+
+      </table>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+<section class="hero is-success is-fullheight">
+  <div class="hero-body has-background-primary">
+      <div class="container has-text-centered">
+        <div class="column is-three-fifths is-offset-one-fifth">
+        <div class="box ">
+        <div class="column is-4 is-offset-4">
+          <form onsubmit="ajouterReservation(event)">
+              <h3 class="has-text-black title is-8">Faire une reservation</h3>
+              <hr class="login-hr">
+              <div class="field">
+                  <div class="control">
+                      <input class="input is-large" type="text" placeholder="noOffres" autofocus="" id="offres" name="noOffres">
+                  </div>
+              </div>
+                 <button type="submit" class="button is-block is-info is-large is-fullwidth title is-4">Reserver<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                  </form>
+                  <button  class="button is-block is-info is-large is-fullwidth title is-4" onclick="history.back()">Annuler<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</section>
+
+
+</body>
+
+<script>
+  AfficherTableauOffre()
+function AfficherTableauOffre() {
+    fetch(`http://localhost:5000/covoiturage/offresDetailer`)
+    .then(reponse =>{
+        return reponse.json()
+    })
+    .then(listes =>{
+        let tbody = document.getElementById("corpsDuTableau");
+
+        listes.forEach(liste => {
+            let tr = document.createElement("tr");
+
+            let tdnoOffres = document.createElement("td");
+            tdnoOffres.innerText = liste.noOffres;
+            tr.appendChild(tdnoOffres);
+
+            let tdnoUtilisateur = document.createElement("td");
+            tdnoUtilisateur.innerText = liste.noUtilisateur;
+            tr.appendChild(tdnoUtilisateur);
+
+						let tdDestination = document.createElement("td");
+            tdDestination.innerText = liste.destination;
+            tr.appendChild(tdDestination);
+
+						let tdDepart = document.createElement("td");
+            tdDepart.innerText = liste.depart;
+            tr.appendChild(tdDepart);
+
+						let tdDate = document.createElement("td");
+            tdDate .innerText = liste.date;
+            tr.appendChild(tdDate );
+
+            let tdHeure = document.createElement("td");
+            tdHeure.innerText = liste.heure;
+            tr.appendChild(tdHeure);
+
+						let tdTrajet = document.createElement("td");
+            tdTrajet.innerText = liste.trajet;
+            tr.appendChild(tdTrajet);
+
+            let tdNbPlace = document.createElement("td");
+            tdNbPlace.innerText = liste.nbPlaceOfferte;
+            tr.appendChild(tdNbPlace);
+
+						let tdCout= document.createElement("td");
+            tdCout.innerText = liste.cout;
+            tr.appendChild(tdCout);
+
+            let tdInteract= document.createElement("td");
+            tdInteract.innerText = liste.paiementVirementInteract;
+            tr.appendChild(tdInteract);
+
+            let tdComptant= document.createElement("td");
+            tdComptant.innerText = liste.paiementComptant;
+            tr.appendChild(tdComptant);
+
+            tbody.appendChild(tr);
+        });
+    })
+  }
+
+  function ajouterReservation(event) {
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = b[5]
+    fetch(`http://localhost:5000/FaireReservation/${noUtilisateur}`, {method: "POST", body: donneeFormulaire})
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then( reponseJson =>{
+        if (reponseJson.success) {
+            alert("La Reservation est fait");
+            history.back()
+        }
+        else {
+            alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+        }
+    })
+}
+</script>
+</html>

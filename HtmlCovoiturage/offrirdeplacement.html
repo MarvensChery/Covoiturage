@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creation d'une offre</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+</head>
+
+<body class="has-background-light">
+  <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+
+    <div class="navbar-item has-dropdown is-hoverable">
+
+      <a class="navbar-link is-size-1">
+   Menu
+  </a>
+
+  <div class="navbar-dropdown">
+    <a class="navbar-item">
+      <a><button class="button is-medium button is-link is-outlined" onclick="history.back()">Liste des Offres</button></a>
+    </a>
+  </div>
+</div>
+</nav>
+  <section class="hero is-success is-fullheight">
+        <div class="hero-body has-background-primary">
+            <div class="container has-text-centered">
+              <div class="column is-three-fifths is-offset-one-fifth">
+              <div class="box ">
+              <div class="column is-4 is-offset-4">
+                <form onsubmit="ajouterOffre(event)">
+                    <h3 class="has-text-black title is-8">Offrir un deplacement</h3>
+                    <hr class="login-hr">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="Destination" autofocus="" id="destination" name="destination" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="Depart" autofocus="" id="depart" name="depart" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="Date" placeholder="Date" autofocus="" id="Date" name="date" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                      <div class="control">
+                          <input class="input is-large" type="time" placeholder="Heure" autofocus="" id="heure" name="heure" required>
+                      </div>
+                    </div>
+                      <div class="field">
+                        <div class="control">
+                            <input class="input is-large" type="text" placeholder="Trajet" autofocus="" value="" id="Trajet" name="trajet">
+                        </div>
+                    </div>
+
+                            <div class="field">
+                            <div class="field">
+                                <div class="control">
+                                  <label class="radio">
+                                    <input type="radio" value="o" id="interact" name="paiementVirementInteract" required>
+                                    Interact Oui
+                                  </label>
+                                  <label class="radio">
+                                    <input type="radio" value="n" id="interact" name="paiementVirementInteract">
+                                    Interact Non
+                                  </label>
+                                </div>
+                                <div class="control">
+                                  <label class="radio">
+                                    <input type="radio" value="o" id="comptant" name="paiementComptant" required>
+                                    Comptant Oui
+                                  </label>
+                                  <label class="radio">
+                                    <input type="radio" value="n" id="comptant" name="paiementComptant">
+                                    Comptant Non
+                                  </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-large" type="number" placeholder="Place offertes" id="Poffert" name="nbPlaceOfferte" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                              <div class="control">
+                                  <input class="input is-large" type="number" placeholder="Cout $" id="cout" name="cout">
+                              </div>
+                          </div>
+
+                </label>
+                            </div>
+                            <button type="submit" class="button is-block is-info is-large is-fullwidth title is-4">Ajouter Offre<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                        </form>
+                        <button class="button is-block is-info is-large is-fullwidth title is-4" onclick="history.back()">Annuler<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </div>
+        </div>
+      </section>
+
+    <script>
+            function ajouterOffre(event) {
+                      event.preventDefault();
+                      let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+                      const a = window.location.href
+                      const b = a.split("/")
+                      let noUtilisateur = b[5]
+                  fetch(`http://localhost:5000/FaireOffre/${noUtilisateur}`, {method: "POST", body: donneeFormulaire})
+                    .then( reponse =>{
+                    return reponse.json()
+                  })
+                    .then( reponseJson =>{
+                      if (reponseJson.success) {
+                           alert("Offre creer");
+                            history.back()
+                        }
+                      else {
+                        alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+            }
+          })
+        }
+    </script>
+</body>
+
+</html>

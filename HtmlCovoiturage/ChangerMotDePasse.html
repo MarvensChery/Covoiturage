@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+</head>
+
+<body class="has-background-light">
+  <section class="hero is-success is-fullheight">
+    <div class="hero-body has-background-primary">
+        <div class="container has-text-centered">
+          <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="box ">
+          <div class="column is-4 is-offset-4">
+            <form onsubmit=" modiferMdp(event)">
+                <h3 class="has-text-black title is-8">Nouveau mot de passe</h3>
+                <hr class="login-hr">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input is-large" type="text" placeholder="numero utilisateur" id="noUtilisateur" name="noUtilisateur" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                              <input class="input is-large" type="text" placeholder="Nouveau mot de passe" id="mdp" name="mdp" required>
+                          </div>
+                      </div>
+
+            </label>
+                        </div>
+                      <button type="submit" class="button is-block is-info is-large is-fullwidth title is-4">Confirmer<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                    </form>
+                    <button class="button is-block is-info is-large is-fullwidth title is-4" onclick="history.back()">Annuler<i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    </div>
+  </section>
+      <script>
+            function modiferMdp(event){
+              event.preventDefault();
+              const a = window.location.href
+              const b = a.split("/")
+              let noUtilisateur = document.getElementById('noUtilisateur').value
+              if(noUtilisateur!=b[5]){
+                alert('Enter un numero utilisateur valide')
+              }
+              else{
+                  let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+                  fetch("http://localhost:5000/covoiturage/modifierMotDePasse", {method: "POST", body: donneeFormulaire})
+                      .then( reponse =>{
+                      return reponse.json()
+                  })
+                      .then( reponseJson =>{
+                      if (reponseJson.success) {
+                       alert("Mot de passe modifier");
+                       window.location.href = "http://localhost:5000/"
+                  }
+                else {
+                alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+                }
+                })
+             }
+            }
+      </script>
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+    </form>
+</body>
+
+</html>

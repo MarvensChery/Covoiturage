@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <style>
+      div.columns {
+	margin-top: 50px;
+	}
+
+
+
+	table {
+  
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+ 
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+      
+      .input{
+        margin-left: 800px;
+        width: 245px;
+      }
+
+      .label {
+          float: left;
+          margin-right: 0.5em;
+        color: darkseagreen;
+        }
+
+
+
+  </style>
+    <title>Vos Offres</title>
+</head>
+
+
+
+
+  <body class="hero-body has-background-primary">
+
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+
+          <a class="navbar-link is-size-1">
+       Menu
+      </a>
+
+      <div class="navbar-dropdown">
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="history.back()">Liste de Vos Offres</button></a>
+        </a>
+      </div>
+    </div>
+    </nav>
+
+    <h1 class="has-text-centered    has-text-black is-size-1 ">Votre offre</h1>
+    <section class="container ">
+
+
+      <div class="box">
+    <div class="block">
+
+      <label class="label title is-2 ">noOffre: </label> <p class="title is-1" id="noOffres">20</p>
+      </div>
+
+
+
+
+
+    <div class="block">
+    <hr style="background-color: black;">
+
+   <label class="label title is-2 floated">noUtilisateur: </label><p class="title is-1 floated"id="noUtilisateur">12</p>
+
+  </div>
+<form onsubmit="ModifierOffres(event)">
+  <div class="block">
+    <hr style="background-color: black;">
+    <input type="hidden" id="HiddennoOffres" name="noOffres">
+    <label class="label title is-2">Destination: </label><p class="title is-1" id="destination">st aghate</p>
+    <input class="input is-size-4" type="Text" placeholder=" Changer Destination" id="NouveauDestination" name="destination">
+   <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Destination</button>
+  </div>
+   <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Depart: </label><p class="title is-1" id="depart">Montreal</p>
+    <input class="input is-size-4" type="Text" placeholder=" Changer Depart" id="NouveauDepart" name="depart">
+    <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Depart</button>
+
+
+
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">Trajet: </label><p class="title is-1" id="trajet">Caserne</p>
+    <input class="input is-size-4" type="Text" placeholder=" Changer Trajet" id="NouveauTrajet" name="trajet">
+    <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded " >Modifier Trajet</button>
+
+
+
+  </div>
+
+
+
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Date: </label> <p class="title is-1" id="date">12-02-2002</p>
+ <input class="input is-size-4" type="date" placeholder=" Changer la Date" id="NouveauDate" name="date">
+
+ <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier Date</button>
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Heure</label> <p class="title is-1" id="heure">12:00</p>
+ <input class="input is-size-4" type="time" placeholder=" changer heure" id="NouveauHeure" name="heure">
+
+ <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier heure</button>
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">nbPlaceOfferte: </label> <p class="title is-1" id="nbPlaceOfferte">5</p>
+ <input class="input is-size-4" type="number" placeholder=" Changer placeofferte" id="NouveaunbPlaceOfferte" name="nbPlaceOfferte">
+
+ <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier nbPlaceOfferte</button>
+  </div>
+
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Cout: </label> <p class="title is-1" id="cout">5</p>
+ <input class="input is-size-4" type="number" placeholder=" Changer cout" id="NouveauCout" name="cout">
+
+ <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier Cout</button>
+  </div>
+</form>
+<form onsubmit="ModifierOffresComptant(event)">
+<input type="hidden" id="HiddennoOffres3" name="noOffres3">
+<div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Paiementcash: </label> <p class="title is-1" id="comptant">o</p>
+ <input type="radio" id="paimentcash"  value="o" name="comptant">
+ <label for="oui">Oui</label><br>
+ <input type="radio" id="paimentcash" value="n" name="comptant">
+ <label for="non">Non</label><br>
+  <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier type paiment</button>
+  </div>
+</form>
+<form onsubmit="ModifierOffresInteract(event)">
+  <input type="hidden" id="HiddennoOffres2" name="noOffres2">
+<div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">Paiementinteract: </label> <p class="title is-1" id="interact">n</p>
+ <input type="radio" id="paimentInteract"  value="o" name="paimentInteract">
+ <label for="oui">Oui</label><br>
+ <input type="radio" id="paimentInteract" value="n" name="paimentInteract">
+ <label for="non">Non</label><br>
+ <button type="submit" style ="margin-left: 800px;"class="button is-link is-medium is-rounded  " >Modifier type le paiment</button>
+  </div>
+</form>
+
+
+<!--
+liste des personne qui on reserver loffre en question// nom prenom no utilisateur
+-->
+</section>
+<div class="hero-body has-background-primary">
+	<div class='container has-text-centered'>
+	<div class='columns is-mobile is-centered'>
+	<div class='column is-15 is-centered  '>
+		<div>
+		<h1 class='has-text-black is-size-1 is-family-monospace'>Liste des personnes qui on reserve</h1>
+
+		</div>
+		<div class="box" >
+		<table    class="table is-bordered has-background-info">
+		<thead>
+			<tr>
+			<th >noUtilisateur</th>
+			<th>Prenom</th>
+			<th>Nom</th>
+
+    </tr>
+
+	</thead>
+
+			<tbody id="corpsDuTableau">
+
+			</tbody>
+
+		</table>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+
+
+
+<section class="hero is-primary is-large">
+  <div class="hero-body">
+  </div>
+</section>
+
+</body>
+<script>
+        const a = window.location.href
+        const b = a.split("/")
+
+        AfficherInfoOffre(b[5])
+        AfficherListeReservationOffre()
+      function AfficherInfoOffre(data){
+        fetch("http://localhost:5000/covoiturage/infoOffre/"+data)
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then(liste =>{
+        let noOffre = document.getElementById("noOffres");
+        let  noUtilisateur = document.getElementById("noUtilisateur");
+        let destination = document.getElementById("destination")
+        let depart = document.getElementById("depart")
+        let date = document.getElementById("date")
+        let heure = document.getElementById("heure")
+        let trajet = document.getElementById("trajet")
+        let nbPlace = document.getElementById("nbPlaceOfferte")
+        let cout = document.getElementById("cout")
+        let interact = document.getElementById("interact")
+        let comptant = document.getElementById("comptant")
+        let hiddenNoOffre= document.getElementById("HiddennoOffres")
+        let hiddenNoOffre2= document.getElementById("HiddennoOffres2")
+        let hiddenNoOffre3= document.getElementById("HiddennoOffres3")
+
+        noOffre.innerText = liste[0].noOffres
+        noUtilisateur.innerText = liste[0].noUtilisateur
+        destination.innerText = liste[0].destination
+        depart.innerText = liste[0].depart
+        date.innerText = liste[0].date
+        heure.innerText = liste[0].heure
+        trajet.innerText = liste[0].trajet
+        nbPlace.innerText = liste[0].nbPlaceOfferte
+        cout.innerText = liste[0].cout
+        interact.innerText = liste[0].paiementVirementInteract
+        comptant.innerText = liste[0].paiementComptant
+        hiddenNoOffre.value = liste[0].noOffres
+        hiddenNoOffre2.value = liste[0].noOffres
+        hiddenNoOffre3.value = liste[0].noOffres
+    })
+  }
+    function AfficherListeReservationOffre() {
+			const a = window.location.href
+      const b = a.split("/")
+      let noOffre = b[5]
+    fetch(`http://localhost:5000/covoiturage/ListeReservationOffre/${noOffre}`)
+    .then(reponse =>{
+        return reponse.json()
+    })
+    .then(listes =>{
+        let tbody = document.getElementById("corpsDuTableau");
+
+        listes.forEach(liste => {
+            let tr = document.createElement("tr");
+
+            let tdNoUtilisateur = document.createElement("td");
+            tdNoUtilisateur.innerText = liste.noUtilisateur;
+            tr.appendChild(tdNoUtilisateur);
+
+            let tdNom = document.createElement("td");
+            tdNom.innerText = liste.nom;
+            tr.appendChild(tdNom);
+
+            let tdPrenom = document.createElement("td");
+            tdPrenom.innerText = liste.prenom;
+            tr.appendChild(tdPrenom);
+
+            tbody.appendChild(tr);
+        });
+    })
+}
+
+function ModifierOffres(event){
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    if(document.getElementById("NouveauDestination").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresDestination`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauDepart").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresDepart`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauTrajet").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresTrajet`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauDate").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresDate`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauHeure").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresHeure`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveaunbPlaceOfferte").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresNbPlaceOffertes`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+    else if(document.getElementById("NouveauCout").value != ""){
+      fetch(`http://localhost:5000/covoiturage/modifierOffresCout`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+}
+
+function ModifierOffresInteract(event){
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    fetch(`http://localhost:5000/covoiturage/modifierOffresPaiementInteract`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+
+  function ModifierOffresComptant(event){
+    event.preventDefault();
+    let donneeFormulaire = new URLSearchParams(new FormData(event.target));
+    fetch(`http://localhost:5000/covoiturage/modifierOffresPaiementComptant`, {method: "POST", body: donneeFormulaire})
+      .then( reponse =>{
+          return reponse.json()
+      })
+      .then( reponseJson =>{
+          if (reponseJson.success) {
+              alert("Offre modifier");
+              location.reload()
+         }
+          else {
+              alert("Oupps, il y a eu une erreur: " + reponseJson.erreur);
+          }
+      })
+    }
+
+</script>
+</html>

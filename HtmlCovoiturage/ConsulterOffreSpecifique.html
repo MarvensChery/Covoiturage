@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <style>
+      .input{
+        margin-left: 800px;
+        width: 245px;
+      }
+
+      .label {
+          float: left;
+          margin-right: 0.5em;
+          color: darkseagreen;
+        }
+
+
+
+  </style>
+    <title>Profil</title>
+</head>
+
+
+
+
+  <body class="hero-body has-background-primary">
+
+    <nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+      <div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+
+          <a class="navbar-link is-size-1">
+       Menu
+      </a>
+      <div class="navbar-dropdown">
+        <a class="navbar-item">
+          <a><button class="button is-medium button is-link is-outlined" onclick="history.back()">Liste des Offres</button></a>
+        </a>
+      </div>
+    </div>
+    </nav>
+
+    <h1 class="has-text-centered    has-text-black is-size-1 ">Information de l'offre</h1>
+    <section class="container ">
+
+
+      <div class="box">
+    <div class="block">
+
+      <label class="label title is-2 ">noOffres: </label> <p class="title is-1" id="noOffres">Allo</p>
+      </div>
+    <div class="block">
+    <hr style="background-color: black;">
+
+   <label class="label title is-2 floated">noUtilisateur: </label><p class="title is-1 floated" id="noUtilisateur">Marvens</p>
+  </div>
+  <div class="block">
+    <hr style="background-color: black;">
+
+    <label class="label title is-2">destination:  </label><p class="title is-1" id="destination">allo@gmail.com</p>
+  </div>
+   <div class="block">
+    <hr style="background-color: black;">
+    <label class="label title is-2">depart: </label><p class="title is-1" id="depart">514 888-999</p>
+</div>
+
+  <div class="block">
+    <hr style="background-color: black;">
+ <label class="label title is-2">date: </label> <p class="title is-1" id="date">1234 rue sherbrooke</p>
+  </div>
+  <br><br>
+  <div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">heure: </label> <p class="title is-1" id="heure">Allo</p>
+</div>
+<div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">trajet: </label> <p class="title is-1" id="trajet">Allo</p>
+</div>
+<div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">nbPlaceOfferte: </label> <p class="title is-1" id="nbPlaceOfferte">Allo</p>
+</div>
+<div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">Cout: </label> <p class="title is-1" id="cout">Allo</p>
+</div>
+<div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">paiement virement interact: </label> <p class="title is-1" id="interact">Allo</p>
+</div>
+<div class="block">
+  <hr style="background-color: black;">
+  <label class="label title is-2 ">paiement comptant: </label> <p class="title is-1" id="comptant">Allo</p>
+</div>
+</div>
+
+</section>
+<section class="hero is-primary is-large">
+  <div class="hero-body">
+  </div>
+</section>
+
+
+
+<script>
+  const a = window.location.href
+  const b = a.split("/")
+
+  AfficherInfoOffre(b[5])
+
+    function AfficherInfoOffre(data){
+        fetch("http://localhost:5000/covoiturage/infoOffre/"+data)
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then(liste =>{
+        let noOffre = document.getElementById("noOffres");
+        let  noUtilisateur = document.getElementById("noUtilisateur");
+        let destination = document.getElementById("destination")
+        let depart = document.getElementById("depart")
+        let date = document.getElementById("date")
+        let heure = document.getElementById("heure")
+        let trajet = document.getElementById("trajet")
+        let nbPlace = document.getElementById("nbPlaceOfferte")
+        let cout = document.getElementById("cout")
+        let interact = document.getElementById("interact")
+        let comptant = document.getElementById("comptant")
+
+        noOffre.innerText = liste[0].noOffres
+        noUtilisateur.innerText = liste[0].noUtilisateur
+        destination.innerText = liste[0].destination
+        depart.innerText = liste[0].depart
+        date.innerText = liste[0].date
+        heure.innerText = liste[0].heure
+        trajet.innerText = liste[0].trajet
+        nbPlace.innerText = liste[0].nbPlaceOfferte
+        cout.innerText = liste[0].cout
+        interact.innerText = liste[0].paiementVirementInteract
+        comptant.innerText = liste[0].paiementComptant
+    })
+  }
+</script>
+</body>
+</html>

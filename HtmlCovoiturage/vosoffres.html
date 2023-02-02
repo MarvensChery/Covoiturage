@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Vos Offres</title>
+<link rel='stylesheet' href=
+'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- custom css -->
+<style>
+	
+
+
+
+	table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+	
+.input{
+        width: 50%;
+      }
+
+</style>
+</head>
+
+<body class="has-background-primary">
+	<nav class="navbar has-background-primary" role="navigation" aria-label="main navigation">
+
+			<div class="navbar-item has-dropdown is-hoverable">
+
+				<a class="navbar-link is-size-1">
+		 Menu
+		</a>
+		<div class="navbar-item">
+      <a class="navbar-item">
+        <a href="http://localhost:5000"><button class="button is-medium is-danger">Deconnexion</button></a>
+      </a>
+    </div>
+		<div class="navbar-dropdown">
+			<a class="navbar-item">
+				<a><button class="button is-medium button is-link is-outlined" onclick="AfficherPageOffrirDeplacement()">Faire une Offre</button></a>
+			</a>
+			<a class="navbar-item">
+				<button class="button is-medium button is-link is-outlined" onclick="history.back()">Vos infos</button>
+			</a>
+
+		</div>
+	</div>
+	</nav>
+
+		<div class="hero-body has-background-primary">
+	<div class='container has-text-centered'>
+	<div class='columns is-mobile is-centered'>
+	<div class='column is-15 is-centered  '>
+		<div class="is-centered">
+		<h1 class='has-text-black is-size-1 is-family-monospace'>Vos offres</h1>
+
+		</div>
+		<div class="box"   >
+      <table     class="table is-bordered has-background-info">
+		<thead >
+			<tr>
+			<th>noOffre</th>
+			<th >noUtilisateur</th>
+			<th>Destination</th>
+			<th>Depart</th>
+			<th>Date</th>
+		  <th>Heure</th>
+      <th>nbPlaceOfferte</th>
+    </tr>
+
+	</thead>
+
+			<tbody id="corpsDuTableau">
+
+			</tbody>
+
+		</table>	
+  </div>
+	</div>
+	</div>
+	</div>
+</div>
+<hr style="background-color: black;">
+<label class="label title is-2">Enter un no offre a consulter </label>
+<input class="input is-size-4" type="address" placeholder="numero Offre" id="noOffre">
+ <button class="button is-link is-medium is-rounded  " onclick="AfficherPageConsulterOffre()" >Consulter</button>
+
+ <label class="label title is-2">Enter un numero d offre a supprimer</label>
+ <input class="input is-size-4" type="text" placeholder="numero demande a suprimmer" id="noOffreSuprimmer">
+ <button class="button is-link is-medium is-rounded"  onclick="supprimerOffre(event)">Supprimer</button>
+
+<section class="hero is-success is-fullheight">
+<div class="hero-body has-background-primary "></div>
+</section>
+</body>
+
+<script>
+window.onload = AfficherTableauVosOffres;
+
+function AfficherPageConsulterOffre(){
+	let noOffre = document.getElementById('noOffre').value
+	window.location.href = (`http://localhost:5000/covoiturage/ConsulterVosOffres/${noOffre}`)
+}
+
+function AfficherPageOffrirDeplacement(){
+	const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = b[5]
+	window.location.href = (`http://localhost:5000/covoiturage/FaireUneOffre/${noUtilisateur}`)
+}
+
+function supprimerOffre(event) {
+    event.preventDefault();
+
+    let noOffre = document.getElementById("noOffreSuprimmer").value;
+
+    fetch("http://localhost:5000/covoiturage/SupprimerOffre/" + noOffre, { method: "DELETE"})
+    .then( reponse =>{
+        return reponse.json()
+    })
+    .then( reponseJson =>{
+        if (reponseJson.supprime) {
+            alert("Offre a bien été supprimé ");
+            location.reload()
+        }
+        else {
+            alert("Oupps, il y a eu une erreur: " + reponseJson.message);
+        }
+    })
+	}
+
+function AfficherTableauVosOffres() {
+			const a = window.location.href
+      const b = a.split("/")
+      let noUtilisateur = b[5]
+    fetch(`http://localhost:5000/covoiturage/offresUtilisateur/${noUtilisateur}`)
+    .then(reponse =>{
+        return reponse.json()
+    })
+    .then(listes =>{
+        let tbody = document.getElementById("corpsDuTableau");
+
+        listes .forEach(liste => {
+            let tr = document.createElement("tr");
+
+            let tdNoOffres = document.createElement("td");
+            tdNoOffres.innerText = liste.noOffres;
+            tr.appendChild(tdNoOffres);
+
+            let tdNoUtilisateur = document.createElement("td");
+            tdNoUtilisateur.innerText = liste.noUtilisateur;
+            tr.appendChild(tdNoUtilisateur);
+
+						 let tdDepart = document.createElement("td");
+						 tdDepart.innerText = liste.depart;
+            tr.appendChild(tdDepart);
+
+            let tdDestination = document.createElement("td");
+            tdDestination.innerText = liste.destination;
+            tr.appendChild(tdDestination);
+
+						let tdDate = document.createElement("td");
+            tdDate.innerText = liste.date;
+            tr.appendChild(tdDate);
+
+            let tdHeure = document.createElement("td");
+            tdHeure.innerText = liste.heure;
+            tr.appendChild(tdHeure);
+
+						let tdNbPlace = document.createElement("td");
+            tdNbPlace.innerText = liste.nbPlaceOfferte;
+            tr.appendChild(tdNbPlace);
+
+            tbody.appendChild(tr);
+        });
+    })
+}
+
+
+</script>
+</html>

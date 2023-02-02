@@ -1,4 +1,5 @@
 use Covoiturage
+<<<<<<< HEAD
 
 
 create table Utilisateurs(
@@ -56,3 +57,5 @@ select * from Offres
 select * from Villes
 select * from Reservations
 select * from DeplacementDemandes
+=======
+>>>>>>> Dev

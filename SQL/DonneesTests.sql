@@ -1,4 +1,5 @@
 use Covoiturage
+<<<<<<< HEAD
 
 -- Insertion dans la table utilisateur
 insert into Utilisateurs
@@ -49,3 +50,5 @@ select * from Offres
 select * from Villes
 select * from Reservations
 select * from DeplacementDemandes
+=======
+>>>>>>> Dev
